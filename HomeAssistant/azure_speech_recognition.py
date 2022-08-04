@@ -25,5 +25,3 @@ def recognize_from_microphone():
             print("Did you set the speech resource key and region values?")
     
     return res
-
-# print(recognize_from_microphone())
