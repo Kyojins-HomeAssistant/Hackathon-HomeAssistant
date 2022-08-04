@@ -1,3 +1,5 @@
+import PlayYt as PlayYt
+import mpv
 import threading
 import HomeAssistant.azure_speech_recognition as azure_speech_recognition
 import HomeAssistant.parser_simple as parser_simple
@@ -17,21 +19,32 @@ def TakeVoiceCommand(nowPlaying, mainWindow, player):
 
     if parsedCommand[0] == 'play':
         songName = parsedCommand[2]
-        thread = threading.Thread(target=PlayYt.PlaySong, args=(songName, player, ))
-        
+        thread = threading.Thread(
+            target=PlayYt.PlaySong, args=(songName, player, ))
+
         thread.start()
 
         nowPlaying.nowPlaying = songName
     elif parsedCommand[0] == 'search':
         if parsedCommand[1] == 'track':
-            print(SpotifySearch.ListTracksOnName(parsedCommand[2]))
+            res = SpotifySearch.ListTracksOnName(parsedCommand[2])
+            print(res)
         elif parsedCommand[1] == 'artist':
-            print(SpotifySearch.ListTracksOnArtist(parsedCommand[2]))
+            res = SpotifySearch.ListTracksOnArtist(parsedCommand[2])
+            print(res)
         elif parsedCommand[1] == 'genre':
-            print(SpotifySearch.ListTracksOnGenre(parsedCommand[2]))
+            res = SpotifySearch.ListTracksOnGenre(parsedCommand[2])
+            print(res)
         elif parsedCommand[1] == 'web':
-            print(BingWebSearch.BingWebSearch(parsedCommand[2]))
+            res = BingWebSearch.BingWebSearch(parsedCommand[2])
+            print(res)
+            text_to_speech("Search results for " + parsedCommand[2] + ":")
+            for item in res:
+                # text_to_speech(item)
+                print(item)
+            
         else:
+            text_to_speech("I could not understand the command")
             print('error')
     elif parsedCommand[0] == 'pause':
         player.stop()

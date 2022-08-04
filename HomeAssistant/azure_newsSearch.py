@@ -4,7 +4,7 @@ import re
 
 import azure_geolocate
 
-
+# lowercasing, whitespace removal, almost all punctuation removal
 def _normalize(sentence):
     sentence = sentence.lower()
     sentence = sentence.strip()
@@ -35,11 +35,14 @@ def get_local_news():
               "textFormat": "HTML",
               "setLang": "en",
               "mkt": "en-WW",
-              "freshness": "Week"}
+              "freshness": "Week",
+              "count": "5"}
 
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
     search_results = response.json()
+
+    # extract some fields from json and normalizing them
     descriptions = [_normalize(article["description"])
                     for article in search_results["value"]]
     names = [_normalize(article["name"])
@@ -49,11 +52,12 @@ def get_local_news():
     prov = [_normalize(provider[0]["name"]) for provider in providers]
     res = []
 
+    # return list building
     item_dict = json.loads(json.dumps(search_results))  
     newsCount = len(item_dict["value"])
 
     for i in range(0, newsCount):
-        res.append(" " + names[i] + "    " +
-                   descriptions[i] + "   " + "News From " + prov[i])
+        res.append(" " + names[i] + ".    " +
+                   descriptions[i] + ".   " + "News From " + prov[i])
     return res
 

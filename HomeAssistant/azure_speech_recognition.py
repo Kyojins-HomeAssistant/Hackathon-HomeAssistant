@@ -25,3 +25,4 @@ def recognize_from_microphone(mainWindow):
             mainWindow.label.setText("Did you set the speech resource key and region values?")
     
     return res
+

@@ -14,8 +14,8 @@ def GetRouteCoordinates(queries):
     response = requests.get('https://atlas.microsoft.com/route/directions/json', params=params)
     resultJson = response.json()
     data = {
-        'lengthMeters': resultJson['routes'][0]['summery']['lengthInMeters'],
-        'travelTimeInSeconds': resultJson['routes'][0]['summery']['travelTimeInSeconds'],
+        'lengthMeters': resultJson['routes'][0]['summary']['lengthInMeters'],
+        'travelTimeInSeconds': resultJson['routes'][0]['summary']['travelTimeInSeconds'],
         'points': []
     };
 
@@ -23,4 +23,4 @@ def GetRouteCoordinates(queries):
 
     return resultJson
 
-print(GetRouteCoordinates([(23.781265414861046, 90.35777289865626), (23.76524531999058, 90.36620759038298)]))
+# print(GetRouteCoordinates([(23.781265414861046, 90.35777289865626), (23.76524531999058, 90.36620759038298)]))

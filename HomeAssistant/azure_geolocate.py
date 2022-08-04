@@ -10,9 +10,6 @@ def return_ip_address():
     return IP_address
 
 
-# def get_country_by_ip(ip_address):
-# importing the requests library
-
 # api-endpoint
 URL = "https://atlas.microsoft.com/geolocation/ip/json?api-version=1.0"
 apiKey = "iDEex7cx7DWGwZXOWza8A0AxdNznLALRYVce3_N7PBw"
@@ -20,6 +17,9 @@ apiKey = "iDEex7cx7DWGwZXOWza8A0AxdNznLALRYVce3_N7PBw"
 
 def get_countryName_byIP():
     countryName = ''
+    # basically event wifi ip addressess were not getting a country 
+    # response from azure geolocate, so hardcoded a bangladeshi ip 
+    # PARAMS = {'ip': return_ip_address(), "subscription-key": apiKey}
     PARAMS = {'ip': "45.251.229.255", "subscription-key": apiKey}
     r = requests.get(url=URL, params=PARAMS)
 
@@ -27,6 +27,8 @@ def get_countryName_byIP():
     data = r.json()
 
     countryCode = ""
+
+    # get country name from two letter code
     if ("countryRegion" in data):
         countryCode = data['countryRegion']['isoCode']
         countryName = pycountry.countries.get(alpha_2=countryCode).name
