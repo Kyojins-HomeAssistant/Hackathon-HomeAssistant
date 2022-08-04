@@ -8,7 +8,7 @@ import azure_geolocate
 def _normalize(sentence):
     sentence = sentence.lower()
     sentence = sentence.strip()
-    sentence = re.sub(r'[^\w\s.,]', '', sentence)
+    sentence = re.sub(r'[^\w\s.,-]', '', sentence)
 
     # stop_words = set(stopwords.words('english'))
     lst = [sentence][0].split()
@@ -35,7 +35,7 @@ def get_local_news():
               "textFormat": "HTML",
               "setLang": "en",
               "mkt": "en-WW",
-              "freshness": "day"}
+              "freshness": "Week"}
 
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
@@ -56,3 +56,6 @@ def get_local_news():
         res.append(" " + names[i] + "    " +
                    descriptions[i] + "   " + "News From " + prov[i])
     return res
+
+
+print(get_local_news())
