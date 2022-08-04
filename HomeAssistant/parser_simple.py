@@ -42,7 +42,7 @@ def _get_command_type(arr_of_string, indx):
     elif (arr_of_string[indx] == "track"):
         return "track"
     else:
-        return "FAILURE"
+        return "web"
 
 
 def _normalize(sentence):
@@ -94,9 +94,10 @@ def extractCommandFromText(text):
     # command type and search item
     if (command == "search"):
         commandType = _get_command_type(arr_of_string, cmdIndex)
-        if (commandType == "FAILURE"):
-            print('command type e error')
-            return("FAILURE", "", "")
+        if (commandType == "web"):
+           # print('command type e error')
+            searchItem = _search_item_after_command(arr_of_string, cmdIndex)
+            return(command, commandType, searchItem)
         searchItem = _search_item_after_command(arr_of_string, cmdIndex + 1)
     else:
         if (arr_of_string[cmdIndex] == "now" and arr_of_string[cmdIndex+1] == "playing"):
@@ -106,3 +107,5 @@ def extractCommandFromText(text):
             searchItem = _search_item_after_command(arr_of_string, cmdIndex)
 
     return (command, commandType, searchItem)
+#str="Search abcd efgh ijk"
+#print(extractCommandFromText(str))
