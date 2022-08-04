@@ -13,4 +13,7 @@ def SpeechRecognize():
 
     print('done recording')
 
-    return recognizer.recognize_google(audio)
+    # text = recognizer.recognize_google(audio)
+    text = recognizer.recognize_google(audio)
+
+    return text
