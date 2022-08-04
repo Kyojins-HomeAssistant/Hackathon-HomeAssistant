@@ -56,7 +56,7 @@ def get_local_news():
     newsCount = len(item_dict["value"])
 
     for i in range(0, newsCount):
-        res.append(" " + names[i] + "    " +
-                   descriptions[i] + "   " + "News From " + prov[i])
+        res.append(" " + names[i] + ".    " +
+                   descriptions[i] + ".   " + "News From " + prov[i])
     return res
 

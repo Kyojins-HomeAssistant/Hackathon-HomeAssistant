@@ -161,7 +161,7 @@ def extractCommandFromText(text):
     return (command, commandType, searchItem)
 
 
-#str="news abcd"
-# str = "asholei ki go from chandnichalk to china"
-# # # str= "vai please fly from ndc, motijheel dhaka to "
+# str="news abcd"
+# # str = "asholei ki go from chandnichalk to china"
+# # # # str= "vai please fly from ndc, motijheel dhaka to "
 # print(extractCommandFromText(str))
