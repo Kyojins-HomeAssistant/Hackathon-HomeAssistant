@@ -23,4 +23,4 @@ def GetRouteCoordinates(queries):
 
     return resultJson
 
-print(GetRouteCoordinates([(23.781265414861046, 90.35777289865626), (23.76524531999058, 90.36620759038298)]))
+# print(GetRouteCoordinates([(23.781265414861046, 90.35777289865626), (23.76524531999058, 90.36620759038298)]))

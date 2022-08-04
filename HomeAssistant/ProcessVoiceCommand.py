@@ -50,7 +50,15 @@ def TakeVoiceCommand(nowPlaying):
             print('nothing playing now')
         else:
             print('now playing ' + nowPlaying)
-
+    
+    elif parsedCommand[0] == 'news':
+        holder = True
+        # just call news and get them, recite them
+    elif parsedCommand[0] == 'go':
+        holder = True
+        # just call location then route and get them, recite them
+    elif parsedCommand[0] == 'FAILURE':
+        gotError = True
     return nowPlaying
 
 while True:
