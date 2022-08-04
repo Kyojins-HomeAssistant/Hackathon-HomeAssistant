@@ -20,6 +20,9 @@ def ListTracksOnName(query):
     header = {'Authorization': 'Bearer ' + token['access_token']}
     response = requests.get(url='https://api.spotify.com/v1/search', params=params, headers=header)
 
+    if response.status_code != 200:
+        raise ConnectionError()
+
     trackNames = []
 
     for item in response.json()['tracks']['items']:
@@ -37,6 +40,9 @@ def ListTracksOnArtist(query):
     params['q'] = urllib.parse.quote(query)
     response = requests.get(url='https://api.spotify.com/v1/search', params=params, headers=header)
 
+    if response.status_code != 200:
+        raise ConnectionError()
+
     trackNames = []
 
     for item in response.json()['tracks']['items']:
@@ -53,6 +59,9 @@ def ListTracksOnGenre(query):
     header = {'Authorization': 'Bearer ' + token['access_token']}
     params['q'] = urllib.parse.quote(query)
     response = requests.get(url='https://api.spotify.com/v1/search', params=params, headers=header)
+
+    if response.status_code != 200:
+        raise ConnectionError()
 
     trackNames = []
 
