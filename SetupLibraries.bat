@@ -4,3 +4,4 @@ pip install speechrecognition
 pip install pyaudio
 pip install numpy
 pip install azure-cognitiveservices-speech
+pip install pycountry
