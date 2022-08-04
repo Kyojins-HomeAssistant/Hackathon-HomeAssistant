@@ -16,6 +16,9 @@ def _find_first_command_index(arr_of_string):
             elif(arr_of_string[i] == "pause"):
                 n = i
                 break
+            elif(arr_of_string[i] == "news"):
+                n = i
+                break
             elif(arr_of_string[i] == "now"):
                 if (arr_of_string[i+1] == "playing"):
                     n = i
@@ -88,6 +91,9 @@ def extractCommandFromText(text):
     # set command
     if (arr_of_string[cmdIndex] == "now" and arr_of_string[cmdIndex+1] == "playing"):
         command = "nowplaying"
+    elif (arr_of_string[cmdIndex] == "news"):
+        command = "news"
+            
     else:
         command = arr_of_string[cmdIndex]
 
@@ -107,5 +113,5 @@ def extractCommandFromText(text):
             searchItem = _search_item_after_command(arr_of_string, cmdIndex)
 
     return (command, commandType, searchItem)
-#str="Search abcd efgh ijk"
+#str="news abcd"
 #print(extractCommandFromText(str))
