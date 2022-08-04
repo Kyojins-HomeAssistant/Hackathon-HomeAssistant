@@ -57,5 +57,3 @@ def get_local_news():
                    descriptions[i] + "   " + "News From " + prov[i])
     return res
 
-
-print(get_local_news())
