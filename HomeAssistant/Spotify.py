@@ -1,16 +1,62 @@
 import spotipy
+import requests
+import urllib
 
-client_id = 'c3b39820384e4020803b795cd75825aa'
-client_secret = '756b659590dd4af38f5b2e13d101ca08'
-spotify = None
+clientID = 'cd58630a1991416abb9ec5b15e658b16'
+clientSecret = 'f671004387df431997923cf75d18a6fc'
+client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
+token = client_credentials_manager.get_access_token()
+params = {'q': '', 'type': 'track', 'limit': 5}
+header = {'Authorization': 'Bearer ' + token['access_token']}
 
-def SpotifySetup():
-    return spotipy.Spotify(auth_manager=spotipy.SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
+# response = requests.get(url='https://api.spotify.com/v1/search', params={'q': 'demons', 'type': 'track'}, headers=header)
 
-def ListTracks(query):
-    results = spotify.search(q=query, limit=5)
+def ListTracksOnName(query):
+    clientID = 'cd58630a1991416abb9ec5b15e658b16'
+    clientSecret = 'f671004387df431997923cf75d18a6fc'
+    client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
+    token = client_credentials_manager.get_access_token()
+    params = {'q': urllib.parse.quote(query), 'type': 'track', 'limit': 5}
+    header = {'Authorization': 'Bearer ' + token['access_token']}
+    response = requests.get(url='https://api.spotify.com/v1/search', params=params, headers=header)
 
-    print(results)
+    trackNames = []
 
-spotify = SpotifySetup()
-ListTracks('demons')
+    for item in response.json()['tracks']['items']:
+        trackNames.append(item['name'])
+
+    return trackNames
+
+def ListTracksOnArtist(query):
+    clientID = 'cd58630a1991416abb9ec5b15e658b16'
+    clientSecret = 'f671004387df431997923cf75d18a6fc'
+    client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
+    token = client_credentials_manager.get_access_token()
+    params = {'q': 'artist:' + urllib.parse.quote(query), 'type': 'track', 'limit': 5}
+    header = {'Authorization': 'Bearer ' + token['access_token']}
+    params['q'] = urllib.parse.quote(query)
+    response = requests.get(url='https://api.spotify.com/v1/search', params=params, headers=header)
+
+    trackNames = []
+
+    for item in response.json()['tracks']['items']:
+        trackNames.append(item['name'])
+
+    return trackNames
+
+def ListTracksOnGenre(query):
+    clientID = 'cd58630a1991416abb9ec5b15e658b16'
+    clientSecret = 'f671004387df431997923cf75d18a6fc'
+    client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
+    token = client_credentials_manager.get_access_token()
+    params = {'q': 'genre:' + urllib.parse.quote(query), 'type': 'track', 'limit': 5}
+    header = {'Authorization': 'Bearer ' + token['access_token']}
+    params['q'] = urllib.parse.quote(query)
+    response = requests.get(url='https://api.spotify.com/v1/search', params=params, headers=header)
+
+    trackNames = []
+
+    for item in response.json()['tracks']['items']:
+        trackNames.append(item['name'])
+
+    return trackNames
