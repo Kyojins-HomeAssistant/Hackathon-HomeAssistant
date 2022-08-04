@@ -1,0 +1,40 @@
+{
+  "formatVersion": "0.0.12",
+  "routes": [
+    {
+      "summary": {
+        "lengthInMeters": 1711,
+        "travelTimeInSeconds": 77,
+        "trafficDelayInSeconds": 0,
+        "trafficLengthInMeters": 0,
+        "departureTime": "2022-08-05T03:45:38+06:00",
+        "arrivalTime": "2022-08-05T03:46:55+06:00"
+      },
+      "legs": [
+        {
+          "summary": {
+            "lengthInMeters": 1711,
+            "travelTimeInSeconds": 77,
+            "trafficDelayInSeconds": 0,
+            "trafficLengthInMeters": 0,
+            "departureTime": "2022-08-05T03:45:38+06:00",
+            "arrivalTime": "2022-08-05T03:46:55+06:00"
+          },
+          "points": [
+            { "latitude": 23.77897, "longitude": 90.39367 },
+            { "latitude": 23.77441, "longitude": 90.39332 },
+            { "latitude": 23.76356, "longitude": 90.39249 }
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "startPointIndex": 0,
+          "endPointIndex": 2,
+          "sectionType": "TRAVEL_MODE",
+          "travelMode": "car"
+        }
+      ]
+    }
+  ]
+}
