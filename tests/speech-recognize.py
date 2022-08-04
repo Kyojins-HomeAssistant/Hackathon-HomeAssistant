@@ -1,10 +1,13 @@
 import speech_recognition
+import wave
 import pyaudio
+import audioop
 
-# ami bujhi...
+# ami ja bujhi...
 
 recognizer = speech_recognition.Recognizer()
-recognizer.energy_threshold = 1000
+recognizer.energy_threshold = 10000
+recognizer.pause_threshold = 2
 
 with speech_recognition.Microphone() as source:
     print('calibrating mic...')
@@ -14,6 +17,13 @@ with speech_recognition.Microphone() as source:
     audio = recognizer.listen(source)
 
 print('record shesh')
+
+wavFileWrite = open('mic-result.wav', 'wb')
+
+wavFileWrite.write(audio.get_wav_data())
+wavFileWrite.close()
+
+
 
 # source hoilo amar mic re python variable e nilam
 # recognizer object er listen method voice recognize
