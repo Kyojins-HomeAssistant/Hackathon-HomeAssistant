@@ -25,6 +25,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.button.setMaximumWidth(150)
+        self.button.setMinimumWidth(150)
 
         self.layout = QtWidgets.QVBoxLayout(self)
         self.layout.setAlignment(QtCore.Qt.AlignCenter)
@@ -39,6 +40,9 @@ class MainWindow(QtWidgets.QWidget):
         thread = threading.Thread(target=ProcessVoiceCommand.TakeVoiceCommand, args=(self.nowPlaying, self, self.player, ))
         
         thread.start()
+    
+    def closeEvent(self, event):
+        self.player.stop()
 
 app = QtWidgets.QApplication([])
 window = MainWindow()
