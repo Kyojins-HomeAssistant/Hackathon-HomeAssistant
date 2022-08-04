@@ -1,3 +1,5 @@
+import PlayYt as PlayYt
+import mpv
 import threading
 import os
 from HomeAssistant.AzureLocationSearch import LocationSearch
@@ -15,13 +17,13 @@ import azure_speech_synth
 
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-os.environ["PATH"] = os.path.dirname(__file__) + os.pathsep + os.environ["PATH"]
+os.environ["PATH"] = os.path.dirname(
+    __file__) + os.pathsep + os.environ["PATH"]
 
-import mpv
-import PlayYt as PlayYt
 
 player = mpv.MPV(ytdl=True, video=False)
 nowPlaying = ''
+
 
 def TakeVoiceCommand(nowPlaying):
     speechText = azure_speech_recognition.recognize_from_microphone()
@@ -34,21 +36,32 @@ def TakeVoiceCommand(nowPlaying):
 
     if parsedCommand[0] == 'play':
         songName = parsedCommand[2]
-        thread = threading.Thread(target=PlayYt.PlaySong, args=(songName, player, ))
-        
+        thread = threading.Thread(
+            target=PlayYt.PlaySong, args=(songName, player, ))
+
         thread.start()
 
         nowPlaying = songName
     elif parsedCommand[0] == 'search':
         if parsedCommand[1] == 'track':
-            print(SpotifySearch.ListTracksOnName(parsedCommand[2]))
+            res = SpotifySearch.ListTracksOnName(parsedCommand[2])
+            print(res)
         elif parsedCommand[1] == 'artist':
-            print(SpotifySearch.ListTracksOnArtist(parsedCommand[2]))
+            res = SpotifySearch.ListTracksOnArtist(parsedCommand[2])
+            print(res)
         elif parsedCommand[1] == 'genre':
-            print(SpotifySearch.ListTracksOnGenre(parsedCommand[2]))
+            res = SpotifySearch.ListTracksOnGenre(parsedCommand[2])
+            print(res)
         elif parsedCommand[1] == 'web':
-            print(BingWebSearch.BingWebSearch(parsedCommand[2]))
+            res = BingWebSearch.BingWebSearch(parsedCommand[2])
+            print(res)
+            text_to_speech("Search results for " + parsedCommand[2] + ":")
+            for item in res:
+                # text_to_speech(item)
+                print(item)
+            
         else:
+            text_to_speech("I could not understand the command")
             print('error')
     elif parsedCommand[0] == 'pause':
         player.stop()
@@ -59,7 +72,7 @@ def TakeVoiceCommand(nowPlaying):
             print('nothing playing now')
         else:
             print('now playing ' + nowPlaying)
-    
+
     elif parsedCommand[0] == 'news':
         holder = True
         # just call news and get them, recite them
@@ -74,7 +87,7 @@ def TakeVoiceCommand(nowPlaying):
         dest = parsedCommand[2][1]
         src_coord = LocationSearch(src)
         dest_coord = LocationSearch(dest)
-        path_detail = GetRouteCoordinates([(src_coord, dest_coord)])
+        path_detail = GetRouteCoordinates([src_coord, dest_coord])
         print(path_detail)
         # eikhane returning ki ta sure na
         # !!!!!!!! MUST CHECK !!!!!!!
@@ -82,8 +95,10 @@ def TakeVoiceCommand(nowPlaying):
         # just call location then route and get them, recite them
     elif parsedCommand[0] == 'FAILURE':
         gotError = True
-        text_to_speech('I could not understand the command')
+        print('I could not understand the command')
+        # text_to_speech('I could not understand the command')
     return nowPlaying
+
 
 while True:
     input('tip de...')
