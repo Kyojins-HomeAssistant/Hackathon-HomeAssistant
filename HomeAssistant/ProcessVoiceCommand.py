@@ -1,21 +1,13 @@
 import threading
-import azure_speech_recognition
-import parser_simple
-import SpotifySearch
-import BingWebSearch
-import os
+import HomeAssistant.azure_speech_recognition as azure_speech_recognition
+import HomeAssistant.parser_simple as parser_simple
+import HomeAssistant.SpotifySearch as SpotifySearch
+import HomeAssistant.BingWebSearch as BingWebSearch
+import HomeAssistant.PlayYt as PlayYt
+from PySide6 import QtGui, QtCore, QtWidgets
 
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-os.environ["PATH"] = os.path.dirname(__file__) + os.pathsep + os.environ["PATH"]
-
-import mpv
-import PlayYt as PlayYt
-
-player = mpv.MPV(ytdl=True, video=False)
-nowPlaying = ''
-
-def TakeVoiceCommand(nowPlaying):
-    speechText = azure_speech_recognition.recognize_from_microphone()
+def TakeVoiceCommand(nowPlaying, mainWindow, player):
+    speechText = azure_speech_recognition.recognize_from_microphone(mainWindow)
 
     print('you said: ' + speechText)
 
@@ -29,7 +21,7 @@ def TakeVoiceCommand(nowPlaying):
         
         thread.start()
 
-        nowPlaying = songName
+        nowPlaying.nowPlaying = songName
     elif parsedCommand[0] == 'search':
         if parsedCommand[1] == 'track':
             print(SpotifySearch.ListTracksOnName(parsedCommand[2]))
@@ -44,16 +36,11 @@ def TakeVoiceCommand(nowPlaying):
     elif parsedCommand[0] == 'pause':
         player.stop()
 
-        nowPlaying = ''
+        nowPlaying.nowPlaying = ''
     elif parsedCommand[0] == 'nowplaying':
-        if nowPlaying == '':
+        if nowPlaying.nowPlaying == '':
             print('nothing playing now')
         else:
-            print('now playing ' + nowPlaying)
+            print('now playing ' + nowPlaying.nowPlaying)
 
-    return nowPlaying
-
-while True:
-    input('tip de...')
-
-    nowPlaying = TakeVoiceCommand(nowPlaying)
+    mainWindow.button.setDisabled(False)
