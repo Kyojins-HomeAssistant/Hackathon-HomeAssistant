@@ -1,3 +1,3 @@
-class ConnectionErrorException(Exception()):
-    __init__(self):
-        print('bad connection')
+# class ConnectionErrorException(Exception()):
+#     __init__(self):
+#         print('bad connection')

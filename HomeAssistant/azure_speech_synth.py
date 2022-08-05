@@ -2,6 +2,7 @@ import re
 import numpy
 import azure.cognitiveservices.speech as speechsdk
 #print("ekhane")
+
 speech_config = speechsdk.SpeechConfig(subscription="db18e008ef87484896e9c241f73bc7de", region="eastus")
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 
@@ -31,7 +32,6 @@ def _normalize(sentence):
 def text_to_speech(text):
     text = _normalize(text)
     speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
-
     if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
         print("Speech synthesized for text [{}]".format(text))
     elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:

@@ -16,13 +16,13 @@ def recognize_from_microphone(mainWindow):
 
         mainWindow.label.setText('You said: ' + res)
     elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
-        mainWindow.label.setText("No speech could be recognized: {}".format(speech_recognition_result.no_match_details))
+        mainWindow.label.setText("No speech could be recognized. Please try again.")
     elif speech_recognition_result.reason == speechsdk.ResultReason.Canceled:
         cancellation_details = speech_recognition_result.cancellation_details
-        mainWindow.label.setText("Speech Recognition canceled: {}".format(cancellation_details.reason))
+        mainWindow.label.setText("Speech Recognition canceled. Please try again.")
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             mainWindow.label.setText("Error details: {}".format(cancellation_details.error_details))
-            mainWindow.label.setText("Did you set the speech resource key and region values?")
+            # mainWindow.label.setText("Did you set the speech resource key and region values?")
     
     return res
 

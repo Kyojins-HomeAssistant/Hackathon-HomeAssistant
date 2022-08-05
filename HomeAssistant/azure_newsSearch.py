@@ -2,13 +2,13 @@ import requests
 import json
 import re
 
-import azure_geolocate
+import HomeAssistant.azure_geolocate as azure_geolocate
 
 # lowercasing, whitespace removal, almost all punctuation removal
 def _normalize(sentence):
     sentence = sentence.lower()
     sentence = sentence.strip()
-    sentence = re.sub(r'[^\w\s.,-]', '', sentence)
+    sentence = re.sub(r'[^\w\s.,-?@!$%&(){}"[]]', '', sentence)
 
     # stop_words = set(stopwords.words('english'))
     lst = [sentence][0].split()
