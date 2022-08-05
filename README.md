@@ -14,13 +14,13 @@ A possible but a bit tedious workaround has been found. Please contact us if thi
 We have added screenshots of the app running for convenience.
 
 ### App 
-<!---
+
 ![App started](/assets/1.png?raw=true "App started")
 
 ![App listenning and parsing text](/assets/2.png?raw=true "Speech to text in work")
 
 
-
+<!---
 ![App playing_music](/assets/3.png?raw=true "Music playing")
 
 ![App reading news](/assets/4.png?raw=true "News reading")
