@@ -7,3 +7,4 @@ pip install pycountry
 pip install spotipy
 pip install mpv
 pip install google-api-python-client
+pip install python-dotenv

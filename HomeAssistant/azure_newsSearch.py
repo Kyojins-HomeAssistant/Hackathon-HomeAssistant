@@ -1,6 +1,8 @@
 import requests
 import json
 import re
+import os
+from dotenv import load_dotenv
 
 import HomeAssistant.azure_geolocate as azure_geolocate
 
@@ -21,8 +23,9 @@ def _normalize(sentence):
     # lst = [sentence][0].split()
     return sentence
 
-
-subscription_key = "<Bing_news_search_subscription_key>"
+load_dotenv()
+# subscription_key = "<Bing_news_search_subscription_key>"
+subscription_key = os.getenv("BING_NEWSSEARCH_KEY")
 search_url = "https://api.bing.microsoft.com/v7.0/news/search"
 
 

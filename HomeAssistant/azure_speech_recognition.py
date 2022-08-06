@@ -1,10 +1,15 @@
+import os
+from dotenv import load_dotenv
 import azure.cognitiveservices.speech as speechsdk
 from PySide6 import QtGui, QtCore, QtWidgets
+
 
 def recognize_from_microphone(mainWindow):
     # print("ekhane")
     res = ""
-    speech_config = speechsdk.SpeechConfig(subscription="<subscription_key_azure>", region="eastus")
+    load_dotenv()
+    subscription_key=os.getenv("AZURE_COGNITIVESPEECH_SERVICE_KEY")
+    speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region="eastus")
     speech_config.speech_recognition_language="en-US"
 
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)

@@ -1,10 +1,15 @@
 import googleapiclient.discovery
 # import mpv
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def PlaySong(query, player):
     apiServiceName = 'youtube'
     apiVersion = 'v3'
-    apiKey = '<your_googleapi_key>'
+    apiKey=os.getenv("GOOGLE_APIKEY")
+    # apiKey = '<your_googleapi_key>'
     youtube = googleapiclient.discovery.build(serviceName=apiServiceName, version=apiVersion, developerKey=apiKey)
     request = youtube.search().list(q=query, part='snippet')
     response = request.execute()

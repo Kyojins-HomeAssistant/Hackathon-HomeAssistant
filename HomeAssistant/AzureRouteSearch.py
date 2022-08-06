@@ -1,5 +1,8 @@
 import requests
-import urllib
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def GetRouteCoordinates(queries):
     queryString = ''
@@ -9,8 +12,9 @@ def GetRouteCoordinates(queries):
             queryString += ':'
         
         queryString += str(queries[i][0]) + ',' + str(queries[i][1])
-    print(queryString)
-    params = { 'query': queryString, 'api-version': '1.0', 'subscription-key': '<Azure_map_subscription_key>'}
+    
+    subscriptio_key=os.getenv("LOCATION_ROUTE_SEARCH_KEY")
+    params = { 'query': queryString, 'api-version': '1.0', 'subscription-key':subscriptio_key}
     response = requests.get('https://atlas.microsoft.com/route/directions/json', params=params)
     
     resultJson = response.json()

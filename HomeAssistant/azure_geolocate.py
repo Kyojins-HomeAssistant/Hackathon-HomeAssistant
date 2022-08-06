@@ -1,8 +1,11 @@
-import json
+import os
 import pycountry
 import requests
+from dotenv import load_dotenv
 
 import socket
+
+load_dotenv()
 
 def return_ip_address():
     h_name = socket.gethostname()
@@ -12,8 +15,9 @@ def return_ip_address():
 
 # api-endpoint
 URL = "https://atlas.microsoft.com/geolocation/ip/json?api-version=1.0"
-apiKey = "<azure_map_api_key>"
-
+# apiKey = "<azure_map_api_key>"
+apiKey = os.getenv("GEOLOCATE_APIKEY")
+# print(apiKey)
 
 def get_countryName_byIP():
     countryName = ''

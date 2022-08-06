@@ -1,9 +1,14 @@
+import os
+from dotenv import load_dotenv
 import re
 import numpy
 import azure.cognitiveservices.speech as speechsdk
 #print("ekhane")
 
-speech_config = speechsdk.SpeechConfig(subscription="<Azure_cognitive_services_subscription_key>", region="eastus")
+load_dotenv()
+
+subscription_key=os.getenv("AZURE_COGNITIVESPEECH_SERVICE_KEY")
+speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region="eastus")
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 
 # The language of the voice that speaks.
