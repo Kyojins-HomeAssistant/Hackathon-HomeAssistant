@@ -82,12 +82,12 @@ def TakeVoiceCommand(nowPlaying, mainWindow, player):
         src = azure_locationSearch.LocationSearch(parsedCommand[2][0])
         dest = azure_locationSearch.LocationSearch(parsedCommand[2][1])
         route = azure_routeSearch.GetRouteCoordinates([src, dest])
-        stRoute = json.loads(route)
+        stRoute = json.loads(json.dumps(route))
         if ("error" in stRoute):
             print("Could not find any suitable route")
             mainWindow.label.setText("Could not find any suitable route")
         else:
-            mainWindow.label.setText("Found a suitable route, printing here" + route["routes"][0]["summary"])
+            mainWindow.label.setText("Found a suitable route, printing in command line")
             print(route["routes"][0]["summary"])
     def ResetText(mainWindow):
         time.sleep(3)

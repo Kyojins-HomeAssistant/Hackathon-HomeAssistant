@@ -36,7 +36,7 @@ def get_local_news():
               "setLang": "en",
               "mkt": "en-WW",
               "freshness": "Week",
-              "count": "5"}
+              "count": "3"}
 
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
