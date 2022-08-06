@@ -3,7 +3,7 @@ import numpy
 import azure.cognitiveservices.speech as speechsdk
 #print("ekhane")
 
-speech_config = speechsdk.SpeechConfig(subscription="db18e008ef87484896e9c241f73bc7de", region="eastus")
+speech_config = speechsdk.SpeechConfig(subscription="<Azure_cognitive_services_subscription_key>", region="eastus")
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 
 # The language of the voice that speaks.

@@ -22,7 +22,7 @@ def _normalize(sentence):
     return sentence
 
 
-subscription_key = "2d2359bc090c46dba54720924fdff75f"
+subscription_key = "<Bing_news_search_subscription_key>"
 search_url = "https://api.bing.microsoft.com/v7.0/news/search"
 
 

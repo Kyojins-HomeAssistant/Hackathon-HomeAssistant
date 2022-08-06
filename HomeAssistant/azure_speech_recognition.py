@@ -4,7 +4,7 @@ from PySide6 import QtGui, QtCore, QtWidgets
 def recognize_from_microphone(mainWindow):
     # print("ekhane")
     res = ""
-    speech_config = speechsdk.SpeechConfig(subscription="db18e008ef87484896e9c241f73bc7de", region="eastus")
+    speech_config = speechsdk.SpeechConfig(subscription="<subscription_key_azure>", region="eastus")
     speech_config.speech_recognition_language="en-US"
 
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)

@@ -4,7 +4,7 @@ import googleapiclient.discovery
 def PlaySong(query, player):
     apiServiceName = 'youtube'
     apiVersion = 'v3'
-    apiKey = 'AIzaSyDOYfCfX95k7s81Z8MfJtyFelD_yKid32w'
+    apiKey = '<your_googleapi_key>'
     youtube = googleapiclient.discovery.build(serviceName=apiServiceName, version=apiVersion, developerKey=apiKey)
     request = youtube.search().list(q=query, part='snippet')
     response = request.execute()

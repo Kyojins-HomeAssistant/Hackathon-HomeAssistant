@@ -10,7 +10,7 @@ def GetRouteCoordinates(queries):
         
         queryString += str(queries[i][0]) + ',' + str(queries[i][1])
     print(queryString)
-    params = { 'query': queryString, 'api-version': '1.0', 'subscription-key': 'OSiV2wi91HWTlH0xX-eNqqicz-tudl8Iuwi5FCoPfo4'}
+    params = { 'query': queryString, 'api-version': '1.0', 'subscription-key': '<Azure_map_subscription_key>'}
     response = requests.get('https://atlas.microsoft.com/route/directions/json', params=params)
     
     resultJson = response.json()

@@ -12,7 +12,7 @@ def return_ip_address():
 
 # api-endpoint
 URL = "https://atlas.microsoft.com/geolocation/ip/json?api-version=1.0"
-apiKey = "iDEex7cx7DWGwZXOWza8A0AxdNznLALRYVce3_N7PBw"
+apiKey = "<azure_map_api_key>"
 
 
 def get_countryName_byIP():

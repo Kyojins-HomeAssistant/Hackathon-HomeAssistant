@@ -2,8 +2,8 @@ import spotipy
 import requests
 import urllib
 
-clientID = 'cd58630a1991416abb9ec5b15e658b16'
-clientSecret = 'f671004387df431997923cf75d18a6fc'
+clientID = '<your_clientID_from_spotify'
+clientSecret = '<your_client_secret_from_spotify>'
 client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
 token = client_credentials_manager.get_access_token()
 params = {'q': '', 'type': 'track', 'limit': 5}
@@ -12,8 +12,6 @@ header = {'Authorization': 'Bearer ' + token['access_token']}
 # response = requests.get(url='https://api.spotify.com/v1/search', params={'q': 'demons', 'type': 'track'}, headers=header)
 
 def ListTracksOnName(query):
-    clientID = 'cd58630a1991416abb9ec5b15e658b16'
-    clientSecret = 'f671004387df431997923cf75d18a6fc'
     client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
     token = client_credentials_manager.get_access_token()
     params = {'q': urllib.parse.quote(query), 'type': 'track', 'limit': 5}
@@ -31,8 +29,6 @@ def ListTracksOnName(query):
     return trackNames
 
 def ListTracksOnArtist(query):
-    clientID = 'cd58630a1991416abb9ec5b15e658b16'
-    clientSecret = 'f671004387df431997923cf75d18a6fc'
     client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
     token = client_credentials_manager.get_access_token()
     params = {'q': 'artist:' + urllib.parse.quote(query), 'type': 'track', 'limit': 5}
@@ -51,8 +47,6 @@ def ListTracksOnArtist(query):
     return trackNames
 
 def ListTracksOnGenre(query):
-    clientID = 'cd58630a1991416abb9ec5b15e658b16'
-    clientSecret = 'f671004387df431997923cf75d18a6fc'
     client_credentials_manager = spotipy.SpotifyClientCredentials(client_id=clientID, client_secret=clientSecret)
     token = client_credentials_manager.get_access_token()
     params = {'q': 'genre:' + urllib.parse.quote(query), 'type': 'track', 'limit': 5}

@@ -2,7 +2,7 @@ import requests
 import urllib
 
 def BingWebSearch(query):
-    headers = {"Ocp-Apim-Subscription-Key": 'ca79c680fc4d48e08afef590fa2d31ea'}
+    headers = {"Ocp-Apim-Subscription-Key": '<subscription_key>w'}
     params = {'q': urllib.parse.quote(query), 'count': 5, 'answerCount': 1, 'responseFilter': 'webpages'}
     response = requests.get('https://api.bing.microsoft.com/v7.0/search', headers=headers, params=params)
     resultJson = response.json()
